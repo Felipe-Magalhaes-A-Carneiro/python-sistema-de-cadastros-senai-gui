@@ -29,6 +29,7 @@ def cadastrar_emprestimo():
         messagebox.showinfo("Sucesso", f"Empréstrimos registrados: {livro} para {usuario}")
         nome_usuario.delete(0, tk.END)
         nome_livro.delete(0, tk.END)
+        atualizar_emprestimos()
     else:
         messagebox.showerror("Erro. Por favor, preencha todos os campos!")
 
@@ -41,7 +42,7 @@ emprestimos_label.pack(pady= 10)
 
 # Função para atualizar a exibição dos empréstimos
 def atualizar_emprestimos():
-    texto = "\n".join([f"{e['usuario']} - {e['livro']}" for e in emprestimos]) # cria uma string que retorna os registros, separando-os por quebras de linha
+    texto = "\n".join([f"""Usuário: {e['usuario']} - Livro: '{e['livro']}'""" for e in emprestimos]) # cria uma string que retorna os registros, separando-os por quebras de linha
     emprestimos_label.config(text = texto)
 
 
