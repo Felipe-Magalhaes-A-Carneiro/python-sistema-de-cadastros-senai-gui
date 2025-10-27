@@ -44,3 +44,6 @@ def atualizar_emprestimos():
     texto = "\n".join([f"{e['usuario']} - {e['livro']}" for e in emprestimos]) # cria uma string que retorna os registros, separando-os por quebras de linha
     emprestimos_label.config(text = texto)
 
+
+# INICIALIZANDO - Loop principal
+janela.mainloop()
