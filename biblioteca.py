@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+import csv
 
 # Cria a janela:
 janela = tk.Tk()
@@ -32,6 +33,14 @@ def cadastrar_emprestimo():
         atualizar_emprestimos()
     else:
         messagebox.showerror("Erro. Por favor, preencha todos os campos!")
+
+# Função para salvar os dados no arquivo CSV
+def salvar_dados():
+    with open("emprestimos.csv", mode= "w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(["usuario", "livro"])
+        for e in emprestimos:
+            writer.writerow([ e["usuario"], e["livro"] ])
 
 # Criação do botão para cadastrar o empréstimo:
 tk.Button(janela, text= "Cadastrar Empréstimo", command = cadastrar_emprestimo).pack(pady = 20)
