@@ -22,8 +22,8 @@ emprestimos = []
 
 # Função para o cadastramento de um novo empréstimo:
 def cadastrar_emprestimo():
-    usuario = nome_usuario.get()
-    livro = nome_livro.get()
+    usuario = nome_usuario.get().title()
+    livro = nome_livro.get().title()
 
     if usuario and livro:
         emprestimos.append({"usuario": usuario, "livro": livro})
@@ -31,6 +31,7 @@ def cadastrar_emprestimo():
         nome_usuario.delete(0, tk.END)
         nome_livro.delete(0, tk.END)
         atualizar_emprestimos()
+        salvar_dados()
     else:
         messagebox.showerror("Erro. Por favor, preencha todos os campos!")
 
@@ -63,6 +64,8 @@ def atualizar_emprestimos():
     texto = "\n".join([f"""Usuário: {e['usuario']} - Livro: '{e['livro']}'""" for e in emprestimos]) # cria uma string que retorna os registros, separando-os por quebras de linha
     emprestimos_label.config(text = texto)
 
+carregar_dados()
+atualizar_emprestimos()
 
 # INICIALIZANDO - Loop principal
 janela.mainloop()
