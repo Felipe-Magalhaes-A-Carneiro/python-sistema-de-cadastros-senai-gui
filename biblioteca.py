@@ -42,6 +42,15 @@ def salvar_dados():
         for e in emprestimos:
             writer.writerow([ e["usuario"], e["livro"] ])
 
+def carregar_dados():
+    try:
+        with open("emprestimos.csv", mode= "r") as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                emprestimos.append(row)
+    except FileNotFoundError:
+        pass # Arquivo ainda não existe
+
 # Criação do botão para cadastrar o empréstimo:
 tk.Button(janela, text= "Cadastrar Empréstimo", command = cadastrar_emprestimo).pack(pady = 20)
 
